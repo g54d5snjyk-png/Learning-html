@@ -1,0 +1,519 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Le forme di bello</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+  :root {
+    --bg: #F4F2EC;
+    --surface: #FFFFFF;
+    --surface2: #ECEAE3;
+    --text: #28271F;
+    --text-muted: #6B6A62;
+    --accent: #1A4D82;
+    --accent-light: #D6E5F5;
+    --gold: #B5891F;
+    --gold-bg: #FDF5E0;
+    --correct: #2A6E2A;
+    --correct-bg: #E4F3E4;
+    --wrong: #B52828;
+    --wrong-bg: #FDEAEA;
+    --border: #D3CFCA;
+    --r: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0D1B2B;
+      --surface: #152336;
+      --surface2: #1C2F47;
+      --text: #E5E0D4;
+      --text-muted: #9B9890;
+      --accent: #4D8FD4;
+      --accent-light: #162338;
+      --gold: #C8A64A;
+      --gold-bg: #1E1800;
+      --correct: #5BAA5B;
+      --correct-bg: #0F2B0F;
+      --wrong: #E05555;
+      --wrong-bg: #2B0F0F;
+      --border: #253748;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0D1B2B;
+    --surface: #152336;
+    --surface2: #1C2F47;
+    --text: #E5E0D4;
+    --text-muted: #9B9890;
+    --accent: #4D8FD4;
+    --accent-light: #162338;
+    --gold: #C8A64A;
+    --gold-bg: #1E1800;
+    --correct: #5BAA5B;
+    --correct-bg: #0F2B0F;
+    --wrong: #E05555;
+    --wrong-bg: #2B0F0F;
+    --border: #253748;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    padding-inline: 20px;
+    padding-block: 36px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: 36px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.9rem, 5vw, 2.7rem);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.15;
+    text-wrap: balance;
+    margin: 0 0 6px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .page-sub {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 40px 0 14px;
+  }
+
+  /* Merkhilfe */
+  .merkhilfe {
+    background: var(--gold-bg);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 var(--r) var(--r) 0;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .merkhilfe strong { color: var(--gold); }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: var(--r);
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    font-size: 0.93rem;
+  }
+
+  thead th {
+    background: var(--accent);
+    color: #fff;
+    padding: 11px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) td { background: var(--surface2); }
+
+  .form {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .ex-it { color: var(--gold); font-style: italic; }
+
+  .art-col {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-style: italic;
+  }
+
+  /* Section separator */
+  .sep { border: none; border-top: 1px solid var(--border); margin: 34px 0; }
+
+  /* Exercise card */
+  .ex-card {
+    background: var(--surface);
+    border-radius: var(--r);
+    border: 1px solid var(--border);
+    padding: 22px 24px 20px;
+    margin-bottom: 22px;
+  }
+
+  .ex-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .ex-badge {
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 11px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .ex-label {
+    font-weight: 600;
+    font-size: 0.97rem;
+    color: var(--text);
+    text-wrap: balance;
+  }
+
+  .ex-label em { color: var(--gold); font-style: italic; }
+
+  /* Item rows */
+  .row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .row:last-of-type { border-bottom: none; }
+
+  .rnum {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-variant-numeric: tabular-nums;
+    min-width: 20px;
+    flex-shrink: 0;
+  }
+
+  .rtext {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .hint {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  /* Input */
+  input[type="text"] {
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 0.95rem;
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    width: 100px;
+    transition: border-color 0.15s;
+    outline: none;
+    vertical-align: baseline;
+  }
+
+  input[type="text"]:focus { border-color: var(--accent); }
+  input[type="text"].ok { border-color: var(--correct); background: var(--correct-bg); color: var(--correct); font-weight: 600; }
+  input[type="text"].err { border-color: var(--wrong); background: var(--wrong-bg); color: var(--wrong); }
+
+  .fb {
+    font-size: 0.82rem;
+    margin-left: 2px;
+    white-space: nowrap;
+  }
+
+  .fb.ok { color: var(--correct); }
+  .fb.err { color: var(--wrong); font-weight: 600; }
+
+  /* Buttons */
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  button {
+    padding: 9px 20px;
+    border-radius: var(--r);
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    font-size: 0.93rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: opacity 0.15s, transform 0.08s;
+    line-height: 1;
+  }
+
+  button:active { transform: scale(0.97); }
+
+  .btn-p { background: var(--accent); color: #fff; }
+  .btn-p:hover { opacity: 0.88; }
+
+  .btn-s {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--text-muted);
+  }
+
+  .btn-s:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Score */
+  .score {
+    display: none;
+    margin-top: 16px;
+    padding: 11px 16px;
+    border-radius: var(--r);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .score.on { display: block; }
+  .score.great { background: var(--correct-bg); color: var(--correct); }
+  .score.mid { background: var(--gold-bg); color: var(--gold); }
+  .score.low { background: var(--wrong-bg); color: var(--wrong); }
+
+  @media (max-width: 500px) {
+    body { padding-inline: 14px; }
+    .ex-card { padding: 18px 16px; }
+    input[type="text"] { width: 82px; }
+    thead th:nth-child(4) { display: none; }
+    tbody td:nth-child(4) { display: none; }
+  }
+</style>
+
+<div class="page-header">
+  <h1>Le forme di <em>bello</em></h1>
+  <p class="page-sub">Italiano · Grammatica · Adjektivdeklination</p>
+</div>
+
+<h2>Erläuterung</h2>
+
+<div class="merkhilfe">
+  <strong>Merkhilfe:</strong> <em>Bello</em> folgt vor dem Nomen denselben Regeln wie der bestimmte Artikel.
+  Die Form richtet sich nach dem <strong>Anlaut des folgenden Wortes</strong> — nicht nach dem Nomen selbst.
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Form</th>
+        <th>Verwendung</th>
+        <th>Beispiel</th>
+        <th>Artikel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="form">bel</span></td>
+        <td>Mask. Sg. · normaler Konsonant</td>
+        <td>un <span class="ex-it">bel</span> mare</td>
+        <td class="art-col">il</td>
+      </tr>
+      <tr>
+        <td><span class="form">bell'</span></td>
+        <td>Mask. &amp; Fem. Sg. · vor Vokal</td>
+        <td>un <span class="ex-it">bell'</span>albero · una <span class="ex-it">bell'</span>isola</td>
+        <td class="art-col">l'</td>
+      </tr>
+      <tr>
+        <td><span class="form">bello</span></td>
+        <td>Mask. Sg. · s+Kons., z, gn, ps, x, y</td>
+        <td>un <span class="ex-it">bello</span> scoglio</td>
+        <td class="art-col">lo</td>
+      </tr>
+      <tr>
+        <td><span class="form">bella</span></td>
+        <td>Fem. Sg. · Konsonant</td>
+        <td>una <span class="ex-it">bella</span> spiaggia</td>
+        <td class="art-col">la</td>
+      </tr>
+      <tr>
+        <td><span class="form">bei</span></td>
+        <td>Mask. Pl. · normaler Konsonant</td>
+        <td><span class="ex-it">bei</span> posti</td>
+        <td class="art-col">i</td>
+      </tr>
+      <tr>
+        <td><span class="form">begli</span></td>
+        <td>Mask. Pl. · Vokal / s+Kons. / z / gn</td>
+        <td><span class="ex-it">begli</span> scogli · <span class="ex-it">begli</span> alberi</td>
+        <td class="art-col">gli</td>
+      </tr>
+      <tr>
+        <td><span class="form">belle</span></td>
+        <td>Fem. Pl. · immer</td>
+        <td><span class="ex-it">belle</span> spiagge · <span class="ex-it">belle</span> isole</td>
+        <td class="art-col">le</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="sep">
+<h2>Übungen</h2>
+
+<!-- Übung 1 -->
+<div class="ex-card" id="ex1">
+  <div class="ex-head">
+    <span class="ex-badge">Übung 1</span>
+    <span class="ex-label">Welche Form von <em>bello</em> passt? Ergänze die Lücken.</span>
+  </div>
+
+  <div class="row"><span class="rnum">1.</span><span class="rtext">un <input type="text" data-a="bel"> mare <span class="hint">(mare = mask., m-)</span></span></div>
+  <div class="row"><span class="rnum">2.</span><span class="rtext">una <input type="text" data-a="bella"> spiaggia <span class="hint">(spiaggia = fem., sp-)</span></span></div>
+  <div class="row"><span class="rnum">3.</span><span class="rtext">un <input type="text" data-a="bello"> scoglio <span class="hint">(scoglio = mask., sc-)</span></span></div>
+  <div class="row"><span class="rnum">4.</span><span class="rtext">una <input type="text" data-a="bell'"> isola <span class="hint">(isola = fem., Vokal)</span></span></div>
+  <div class="row"><span class="rnum">5.</span><span class="rtext"><input type="text" data-a="bei"> posti <span class="hint">(posti = mask. Pl., p-)</span></span></div>
+  <div class="row"><span class="rnum">6.</span><span class="rtext"><input type="text" data-a="begli"> scogli <span class="hint">(scogli = mask. Pl., sc-)</span></span></div>
+  <div class="row"><span class="rnum">7.</span><span class="rtext"><input type="text" data-a="belle"> spiagge <span class="hint">(spiagge = fem. Pl.)</span></span></div>
+  <div class="row"><span class="rnum">8.</span><span class="rtext">un <input type="text" data-a="bell'"> albero <span class="hint">(albero = mask., Vokal)</span></span></div>
+  <div class="row"><span class="rnum">9.</span><span class="rtext">una <input type="text" data-a="bella"> città <span class="hint">(città = fem., c-)</span></span></div>
+  <div class="row"><span class="rnum">10.</span><span class="rtext"><input type="text" data-a="begli"> zaini <span class="hint">(zaini = mask. Pl., z-)</span></span></div>
+
+  <div class="btn-row">
+    <button class="btn-p" onclick="check('ex1')">Überprüfen</button>
+    <button class="btn-s" onclick="reset('ex1')">Zurücksetzen</button>
+  </div>
+  <div class="score" id="sc-ex1"></div>
+</div>
+
+<!-- Übung 2 -->
+<div class="ex-card" id="ex2">
+  <div class="ex-head">
+    <span class="ex-badge">Übung 2</span>
+    <span class="ex-label">Lucia erzählt von Sizilien. Ergänze die richtige Form von <em>bello</em>.</span>
+  </div>
+
+  <div class="row"><span class="rnum">1.</span><span class="rtext">La Sicilia ha una <input type="text" data-a="bella"> costa lunga. <span class="hint">(costa = fem., c-)</span></span></div>
+  <div class="row"><span class="rnum">2.</span><span class="rtext">C'è un <input type="text" data-a="bel"> mare pulito. <span class="hint">(mare = mask., m-)</span></span></div>
+  <div class="row"><span class="rnum">3.</span><span class="rtext">Non ci sono solo <input type="text" data-a="belle"> spiagge di sabbia. <span class="hint">(spiagge = fem. Pl.)</span></span></div>
+  <div class="row"><span class="rnum">4.</span><span class="rtext">Ci sono anche <input type="text" data-a="begli"> scogli. <span class="hint">(scogli = mask. Pl., sc-)</span></span></div>
+  <div class="row"><span class="rnum">5.</span><span class="rtext">È un <input type="text" data-a="bel"> posto ideale per fare il bagno. <span class="hint">(posto = mask., p-)</span></span></div>
+  <div class="row"><span class="rnum">6.</span><span class="rtext">Lucia parla di una <input type="text" data-a="bell'"> isola meravigliosa. <span class="hint">(isola = fem., Vokal)</span></span></div>
+  <div class="row"><span class="rnum">7.</span><span class="rtext">Ci sono tanti <input type="text" data-a="bei"> posti da visitare. <span class="hint">(posti = mask. Pl., p-)</span></span></div>
+  <div class="row"><span class="rnum">8.</span><span class="rtext">È una <input type="text" data-a="bell'"> esperienza indimenticabile. <span class="hint">(esperienza = fem., Vokal)</span></span></div>
+
+  <div class="btn-row">
+    <button class="btn-p" onclick="check('ex2')">Überprüfen</button>
+    <button class="btn-s" onclick="reset('ex2')">Zurücksetzen</button>
+  </div>
+  <div class="score" id="sc-ex2"></div>
+</div>
+
+<script>
+  function norm(s) {
+    return s.trim().toLowerCase()
+      .replace(/[''`´]/g, "'");
+  }
+
+  function check(id) {
+    const card = document.getElementById(id);
+    const inputs = card.querySelectorAll('input[type="text"]');
+    let got = 0;
+
+    inputs.forEach(inp => {
+      // remove old feedback
+      const old = inp.nextElementSibling;
+      if (old && old.classList.contains('fb')) old.remove();
+      inp.classList.remove('ok', 'err');
+
+      const correct = norm(inp.dataset.a);
+      const given   = norm(inp.value);
+      const fb = document.createElement('span');
+      fb.className = 'fb';
+
+      if (given === correct) {
+        inp.classList.add('ok');
+        fb.classList.add('ok');
+        fb.textContent = ' ✓';
+        got++;
+      } else {
+        inp.classList.add('err');
+        fb.classList.add('err');
+        fb.textContent = ' → ' + inp.dataset.a;
+      }
+      inp.after(fb);
+    });
+
+    const total = inputs.length;
+    const pct   = Math.round(got / total * 100);
+    const sc    = document.getElementById('sc-' + id);
+    sc.className = 'score on';
+
+    if (pct >= 80) {
+      sc.classList.add('great');
+      sc.textContent = `${got} / ${total} richtig (${pct} %) — Ottimo! 🎉`;
+    } else if (pct >= 50) {
+      sc.classList.add('mid');
+      sc.textContent = `${got} / ${total} richtig (${pct} %) — Bene, aber noch etwas üben!`;
+    } else {
+      sc.classList.add('low');
+      sc.textContent = `${got} / ${total} richtig (${pct} %) — Schau noch einmal in die Erläuterung!`;
+    }
+  }
+
+  function reset(id) {
+    const card = document.getElementById(id);
+    card.querySelectorAll('input[type="text"]').forEach(inp => {
+      inp.value = '';
+      inp.classList.remove('ok', 'err');
+      const fb = inp.nextElementSibling;
+      if (fb && fb.classList.contains('fb')) fb.remove();
+    });
+    const sc = document.getElementById('sc-' + id);
+    sc.className = 'score';
+    sc.textContent = '';
+  }
+</script>
+
+</body></html>
