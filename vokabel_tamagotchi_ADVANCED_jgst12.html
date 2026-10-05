@@ -519,7 +519,7 @@ var ENABLE_LISTEN = false;
 /* Führende Artikel/Partikel der Fremdsprache, die beim Eintippen toleriert werden.
    Englisch: ["to","the"] · Französisch: ["le","la","les","l'","un","une","des"]
    Spanisch: ["el","la","los","las","un","una"] · Italienisch: ["il","lo","la","i","gli","le","un","una"] · Latein: [] */
-var STRIP_LEADING = ["to", "the"];
+var STRIP_LEADING = ["to", "the", "a", "an"];
 /* Basis-Wachstumsziel (Vielfaches von 3). Wird bei gewähltem Seiten-/Unit-Umfang
    automatisch an die Wortzahl angepasst; ohne Seiten dient dieser Wert direkt. */
 var GROW_TARGET = 30;
@@ -824,11 +824,20 @@ function buildType(){
   document.getElementById("typeInput").focus();
 }
 function normalize(s){
-  s=s.toLowerCase().trim().replace(/\s+/g," ");
-  for(var i=0;i<STRIP_LEADING.length;i++){
-    var w=STRIP_LEADING[i].toLowerCase();
-    if(w.charAt(w.length-1)==="'"){ if(s.indexOf(w)===0){ s=s.slice(w.length).trim(); break; } }
-    else if(s.indexOf(w+" ")===0){ s=s.slice(w.length+1).trim(); break; }
+  s=s.toLowerCase().trim();
+  s=s.replace(/[''`´']/g,"");
+  s=s.replace(/-/g," ");
+  s=s.replace(/[\.,:;!?()\[\]\/]/g," ");
+  s=s.replace(/\s+/g," ").trim();
+  s=s.replace(/\b(sth|sb|smb|somebody|something)\b/g," ").replace(/\s+/g," ").trim();
+  var changed=true;
+  while(changed){
+    changed=false;
+    for(var i=0;i<STRIP_LEADING.length;i++){
+      var w=STRIP_LEADING[i].toLowerCase();
+      if(s.indexOf(w+" ")===0){ s=s.slice(w.length+1).trim(); changed=true; break; }
+      else if(s===w){ s=""; changed=true; break; }
+    }
   }
   return s;
 }
